@@ -1,4 +1,9 @@
-- if logged_in?
-  = link_to 'ログアウト', logout_path
-- else
-  a href="/auth/twitter"  ログイン
+.container
+  .row
+    .col-6
+    .col-6
+      .float-right
+        - if logged_in?
+          = link_to 'ログアウト', logout_path
+        - else
+          a href="/auth/twitter"  ログイン
