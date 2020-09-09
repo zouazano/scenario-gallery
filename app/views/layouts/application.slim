@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Mdms
+    /= favicon_link_tag
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body.bg-light
+    /= render 'shared/header'
+    = yield
+    /= render 'shared/footer'

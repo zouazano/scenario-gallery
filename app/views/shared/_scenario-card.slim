@@ -1,0 +1,17 @@
+a href = scenario_path(scenario.id)
+  .row.py-3.bg-white.mb-1.shadow-sm.rounded
+    .col-3
+      /- unless scenario.image.nil?
+        = image_tag scenario.image.thumb('70x70#').url
+    .col-9
+      .row
+        .col-12
+          span.text-body.font-weight-bold = scenario.title
+        .col-12
+          /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
+          small.text-secondary プレイ人数:
+          small.text-secondary.float-right #{scenario.player_number}人
+        .col-12
+          /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
+          small.text-secondary GM:
+          small.text-secondary.float-right #{scenario.gm}
