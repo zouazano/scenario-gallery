@@ -4,6 +4,7 @@
     .col-6
       .float-right
         - if logged_in?
-          = link_to 'ログアウト', logout_path
+          = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
+          /= link_to 'ログアウト', logout_path
         - else
           a href="/auth/twitter"  ログイン

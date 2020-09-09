@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-12.bg-white.my-2.p-3.shadow-sm.rounded
+      .border-bottom
+        /- unless @player.image.nil?
+          = image_tag @player.image.thumb('70x70#').url
+        = link_to 'ログアウト', logout_path
+        h1.text-title.text-title = @player.name
+      /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
+      /.border-bottom
+        .my-2
+          span.text-secondary 作者:
+          - @player.writers.each do |writer|
+            span.text-secondary.float-right #{writer.name}
+      .my-2
+        span.text-secondary プレイ人数:
+        span.text-secondary.float-right #{@player.nickname}人
+      /.border-top
+        .my-2
+          span.text-secondary あらすじ:
+          .px-2
+            span.text-secondary.float-right #{@player.summary}
+
+
