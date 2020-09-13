@@ -6,8 +6,8 @@ class BookmarksController < ApplicationController
 
   def create
     @scenario = Scenario.find(params[:scenario_id])
-    unless @scenario.add?(current_player)
-      @scenario.add(current_player)
+    unless @scenario.bookmark_added?(current_player)
+      @scenario.add_bookmark(current_player)
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
         format.js {render layout: false}
@@ -17,8 +17,8 @@ class BookmarksController < ApplicationController
 
   def destroy
     @scenario = Bookmark.find(params[:id]).scenario
-    if @scenario.add?(current_player)
-      @scenario.remove(current_player)
+    if @scenario.bookmark_added?(current_player)
+      @scenario.remove_bookmark(current_player)
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
         format.js {render layout: false}
