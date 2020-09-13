@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200909143719) do
+ActiveRecord::Schema.define(version: 20200912071828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "player_id", null: false
+    t.integer "scenario_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id", "scenario_id"], name: "index_bookmarks_on_player_id_and_scenario_id", unique: true
+    t.index ["player_id"], name: "index_bookmarks_on_player_id"
+    t.index ["scenario_id"], name: "index_bookmarks_on_scenario_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "name"

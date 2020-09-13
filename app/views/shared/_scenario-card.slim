@@ -1,17 +1,38 @@
-a href = scenario_path(scenario.id)
-  .row.py-3.bg-white.mb-1.shadow-sm.rounded
-    .col-3
-      /- unless scenario.image.nil?
-        = image_tag scenario.image.thumb('70x70#').url
-    .col-9
+.row.py-0.bg-white.mt-3.shadow-sm.rounded
+  a.col-12 href = scenario_path(scenario.id)
+    .border-bottom
       .row
+        .col-12.px-0
+          /- unless scenario.image.nil?
+            = image_tag scenario.image.thumb('70x70#').url
+          /- else
+          img.img-fluid.mr-1 alt="team" src=asset_path("bookshelf.png")
         .col-12
-          span.text-body.font-weight-bold = scenario.title
-        .col-12
-          /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
-          small.text-secondary プレイ人数:
-          small.text-secondary.float-right #{scenario.player_number}人
-        .col-12
-          /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
-          small.text-secondary GM:
-          small.text-secondary.float-right #{scenario.gm}
+          .row
+            .col-12
+              .border-bottom
+                span.text-body.font-weight-bold = scenario.title
+            .col-12
+              .border-bottom
+                /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
+                small.text-secondary プレイ人数:
+                small.text-secondary.float-right #{scenario.player_number}人
+            .col-12
+              .border-bottom
+                /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
+                small.text-secondary GM:
+                small.text-secondary.float-right #{scenario.gm}
+            .col-12
+              /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
+              small.text-secondary あらすじ:
+              .px-2
+                small.text-secondary =simple_format(scenario.summary.slice(0..48) + "...")
+
+  .col-12.py-1
+    .row
+      .col-4.px-1
+        /= render "bookmarks/bookmark", scenario: scenario
+      .col-4.px-1 id="scenario-#{scenario.id}"
+        = render "bookmarks/bookmark", scenario: scenario
+      .col-4.px-1
+        /= render "bookmarks/bookmark", scenario: scenario

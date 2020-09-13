@@ -1,0 +1,13 @@
+- if scenario.add?(current_player)
+  = form_for(scenario.bookmarks.find_by(player_id: current_player.id), method: :delete, remote: true, authenticity_token: true) do |f|
+    = button_tag(class: "btn btn-warning p-1 btn-block") do
+      span #{scenario.bookmarks.count}
+      br
+      small 興味ある
+- else
+  = form_for(scenario.bookmarks.build, remote: true, authenticity_token: true) do |f|
+    div = hidden_field_tag :scenario_id, scenario.id
+    = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+      span #{scenario.bookmarks.count}
+      br
+      small 興味ある

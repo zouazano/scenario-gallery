@@ -7,6 +7,8 @@ end
 
 gem 'slim-rails'
 
+gem 'jquery-rails'
+
 gem 'bootstrap', '~> 4.5.0'
 
 gem 'dotenv-rails'
