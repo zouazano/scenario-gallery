@@ -1,0 +1,31 @@
+.col-12.px-0
+  /- unless scenario.image.nil?
+    = image_tag scenario.image.thumb('70x70#').url
+  /- else
+  img.img-fluid.mr-1 alt="team" src=asset_path("bookshelf.png")
+.col-12
+  .border-bottom
+    .my-2
+      h1.text-title.text-title = scenario.title
+  .border-bottom
+    .my-2
+      span.text-secondary シナリオURL
+  .border-bottom
+    .my-2
+      span.text-secondary 作者:
+      - scenario.writers.each do |writer|
+        span.text-secondary.float-right #{writer.name}
+  .my-2
+    span.text-secondary プレイ人数:
+    span.text-secondary.float-right #{scenario.player_number}人
+  .my-2
+    span.text-secondary GM:
+    span.text-secondary.float-right #{scenario.gm}
+  .my-2
+    span.text-secondary 価格:
+    span.text-secondary.float-right #{scenario.price}円
+  .border-top
+    .my-2
+      span.text-secondary あらすじ:
+      .px-2
+        span.text-secondary #{scenario.summary}

@@ -2,7 +2,6 @@
   .row.px-3
     .col-12
       h1.mt-1.text-title シナリオ一覧
-  .row.px-3
     .col-12
       - @scenarios.order(:id).each do |scenario|
-          = render 'shared/scenario-card', scenario: scenario
+          = render 'scenarios/index-card', scenario: scenario

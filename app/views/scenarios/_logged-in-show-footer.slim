@@ -1,0 +1,42 @@
+.col-4.px-1
+  - if scenario.review_added?(current_player)
+    .div data-target="#playedModal" data-toggle="modal"
+      = button_tag(class: "btn btn-warning p-1 btn-block") do
+        span #{scenario.reviews.count}
+        br
+        small プレイした
+    #playedModal.modal.fade aria-hidden="true" aria-labelledby="reviewModalLabel" role="dialog" tabindex="-1"
+      .modal-dialog role="document"
+        .modal-content
+          .modal-header
+            h5#reviewModalLabel.modal-title
+              span.text-body.font-weight-bold
+            button.close aria-label="Close" data-dismiss="modal" type="button"
+              span aria-hidden="true"  ×
+          .modal-body
+            span このシナリオはすでにプレイしています
+            br
+            = link_to '削除する', review_path(scenario.reviews.find_by(player: current_player)), method: :delete
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
+  - else
+    .div data-target="#reviewModal" data-toggle="modal"
+      = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+        span #{scenario.reviews.count}
+        br
+        small プレイした
+    #reviewModal.modal.fade aria-hidden="true" aria-labelledby="reviewModalLabel" role="dialog" tabindex="-1"
+      .modal-dialog role="document"
+        .modal-content
+          .modal-header
+            h5#reviewModalLabel.modal-title
+              span.text-body.font-weight-bold プレイ記録
+            button.close aria-label="Close" data-dismiss="modal" type="button"
+              span aria-hidden="true"  ×
+          .modal-body
+            = render 'shared/review', scenario: @scenario
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
+.col-4.px-1 id="scenario-#{scenario.id}"
+  = render "bookmarks/bookmark", scenario: scenario
+.col-4.px-1

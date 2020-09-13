@@ -1,0 +1,19 @@
+.col-12
+  = form_for(scenario.reviews.build) do |f|
+    = f.hidden_field :scenario_id, :value => scenario.id
+    = f.hidden_field :player_id, :value => current_player.id
+    .border-bottom
+      .row
+        .col-2.pr-0
+          span 評価
+        .col-10
+          = f.number_field :score, min:0, max:5, step: "0.1", class:'form-control mb-2', :placeholder => "0~5"
+    .row
+      .col-2.pr-0
+        span 感想
+      .col-10
+        .float-right
+          = f.check_box :spoiler, class:'form-check form-check-input'
+        span.float-right.mr-4 ネタバレ含む？
+    = f.text_area :content, class:'form-control mb-2', :placeholder => "ネタバレを含む場合はチェックをしてください"
+    = f.submit '投稿する', class:'form-control bg-success font-weight-bold text-white border-info mb-2'

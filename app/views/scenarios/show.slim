@@ -1,29 +1,16 @@
 .container
-  .row
-    .col-12.bg-white.my-2.p-3.shadow-sm.rounded
-      .border-bottom
-        /- unless @scenario.image.nil?
-          = image_tag @scenario.image.thumb('70x70#').url
-        h1.text-title.text-title = @scenario.title
-      /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
-      .border-bottom
-        .my-2
-          span.text-secondary 作者:
-          - @scenario.writers.each do |writer|
-            span.text-secondary.float-right #{writer.name}
-      .my-2
-        span.text-secondary プレイ人数:
-        span.text-secondary.float-right #{@scenario.player_number}人
-      .my-2
-        span.text-secondary GM:
-        span.text-secondary.float-right #{@scenario.gm}
-      .my-2
-        span.text-secondary 価格:
-        span.text-secondary.float-right #{@scenario.price}円
-      .border-top
-        .my-2
-          span.text-secondary あらすじ:
-          .px-2
-            span.text-secondary.float-right #{@scenario.summary}
-
-
+  .row.px-3
+    .col-12.py-0.bg-white.mt-3.shadow-sm.rounded
+      .row
+        = render 'scenarios/show-card', scenario: @scenario
+        - if logged_in?
+          = render 'scenarios/logged-in-show-footer', scenario: @scenario
+    .col-12
+      スコアレビュー
+    - @scenario.reviews&.each do |review|
+      .col-12.py-0.bg-white.mt-3.shadow-sm.rounded
+        span = review.player&.name
+        br
+        span = review.score
+        br
+        span = review.content

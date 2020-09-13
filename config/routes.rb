@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :scenarios, only: %i[index show]
   resources :players, only: %i[show]
   resources :bookmarks, only: %i[create destroy]
+  resources :reviews, only: %i[create edit destroy]
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

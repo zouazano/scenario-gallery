@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200912071828) do
+ActiveRecord::Schema.define(version: 20200913064820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20200912071828) do
     t.string "uid"
     t.string "nickname"
     t.string "image"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "player_id", null: false
+    t.integer "scenario_id", null: false
+    t.float "score"
+    t.text "content"
+    t.boolean "spoiler"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id", "scenario_id"], name: "index_reviews_on_player_id_and_scenario_id", unique: true
+    t.index ["player_id"], name: "index_reviews_on_player_id"
+    t.index ["scenario_id"], name: "index_reviews_on_scenario_id"
   end
 
   create_table "scenario_writers", force: :cascade do |t|
