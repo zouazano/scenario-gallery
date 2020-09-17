@@ -15,10 +15,10 @@
     .col-12
       ul.nav.nav-tabs.nav-fill
         li.nav-item
-          a.nav-link.active href="#"
+          a.nav-link href=player_path(@player.id)
             span.text-body プレイした
         li.nav-item
-          a.nav-link href=player_bookmarks_path(@player.id)
+          a.nav-link.active href="#"
             span.text-body 興味あり
         li.nav-item
           .nav-link
@@ -38,11 +38,11 @@
                   .modal-footer
                     button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
       .row.px-1
-        - @player.reviews&.each do |review|
+        - @player.bookmarks&.each do |bookmark|
           .col-6
             .px-1
               .row.py-0.bg-white.mt-3.shadow-sm.rounded
-                a.col-12 href = scenario_path(review.scenario.id)
+                a.col-12 href = scenario_path(bookmark.scenario.id)
                   .border-bottom
                     .row
                       .col-12.px-0
@@ -54,36 +54,34 @@
                         .row
                           .col-12
                             .border-bottom
-                              span.text-body.font-weight-bold = review.scenario.title
+                              span.text-body.font-weight-bold = bookmark.scenario.title
                           .col-12
                             .border-bottom
-                              /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
-                              /small.text-secondary 自分のスコア:
-                              small.text-secondary #{review.score}
+                              small.text-secondary =bookmark.scenario.reviews&.average(:score)&.round(1)
 
                   .row
                     - if logged_in?
                       .col-4.px-1
-                        - if review.scenario.review_added?(current_player)
+                        - if bookmark.scenario.review_added?(current_player)
                           = button_tag(class: "btn btn-warning p-1 btn-block") do
-                            span #{review.scenario.reviews.count}
+                            span #{bookmark.scenario.reviews.count}
                             br
                             small プレイした
                         - else
-                          a href = scenario_path(review.scenario.id)
+                          a href = scenario_path(bookmark.scenario.id)
                             = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
-                              span #{reviw.scenario.reviews.count}
+                              span #{bookmark.scenario.reviews.count}
                               br
                               small プレイした
                       .col-4.px-1
-                        - if review.scenario.bookmark_added?(current_player)
+                        - if bookmark.scenario.bookmark_added?(current_player)
                           = button_tag(class: "btn btn-warning p-1 btn-block") do
-                            span #{review.scenario.bookmarks.count}
+                            span #{bookmark.scenario.bookmarks.count}
                             br
                             small 興味ある
                         - else
                           = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
-                            span #{review.scenario.bookmarks.count}
+                            span #{bookmark.scenario.bookmarks.count}
                             br
                             small 興味ある
 

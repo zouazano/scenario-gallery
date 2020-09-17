@@ -29,3 +29,7 @@
       span.text-secondary あらすじ:
       .px-2
         span.text-secondary =simple_format(scenario.summary)
+  .border-top
+    .my-2
+      span.text-secondary 評価:
+      span.text-secondary.float-right =scenario.reviews.average(:score)&.round(1)

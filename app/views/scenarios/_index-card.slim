@@ -27,6 +27,10 @@
               small.text-secondary あらすじ:
               .px-2
                 small.text-secondary =simple_format(scenario.summary.slice(0..48) + "...")
+            .col-12
+              .border-top
+                small.text-secondary 評価:
+                small.text-secondary.float-right =scenario.reviews.average(:score)&.round(1)
 
   .col-12.py-1
     .row
