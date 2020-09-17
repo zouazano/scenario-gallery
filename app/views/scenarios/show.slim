@@ -7,7 +7,7 @@
           = render 'scenarios/logged-in-show-footer', scenario: @scenario
     .col-12.mt-3.font-weight-bold
       span スコアレビュー
-    - @scenario.reviews&.order(:created_at).each_with_index do |review, i|
+    - @scenario.reviews&.order(created_at: "DESC").each_with_index do |review, i|
       .col-12.py-2.bg-white.mt-3.shadow-sm.rounded
         .row
           .col-3
