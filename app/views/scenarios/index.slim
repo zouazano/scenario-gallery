@@ -3,5 +3,8 @@
     .col-12
       h1.mt-1.text-title シナリオ一覧
     .col-12
-      - @scenarios.order(:id).each do |scenario|
+      - @scenarios.each do |scenario|
           = render 'scenarios/index-card', scenario: scenario
+
+    .col-12.mt-3.d-flex.justify-content-center
+      = paginate @scenarios

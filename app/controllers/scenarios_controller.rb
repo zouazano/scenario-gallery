@@ -1,7 +1,7 @@
 class ScenariosController < ApplicationController
 
   def index
-    @scenarios = Scenario.all
+    @scenarios = Scenario.order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def show
