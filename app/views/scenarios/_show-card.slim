@@ -7,9 +7,11 @@
   .border-bottom
     .my-2
       h1.text-title.text-title = scenario.title
-  .border-bottom
-    .my-2
-      span.text-secondary シナリオURL
+  - if scenario.scenario_link.present?
+    .border-bottom
+      .my-2
+        a.d-inline href=scenario.scenario_link target="_blank"
+          span.font-weight-bold リンク
   .border-bottom
     .my-2
       span.text-secondary 作者:

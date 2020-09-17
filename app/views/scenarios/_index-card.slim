@@ -14,6 +14,11 @@
                 span.text-body.font-weight-bold = scenario.title
             .col-12
               .border-bottom
+                small.text-secondary 作者:
+                - scenario.writers&.each do |writer|
+                  small.text-secondary.float-right #{writer&.name}
+            .col-12
+              .border-bottom
                 /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
                 small.text-secondary プレイ人数:
                 small.text-secondary.float-right #{scenario.player_number}人
@@ -22,15 +27,16 @@
                 /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
                 small.text-secondary GM:
                 small.text-secondary.float-right #{scenario.gm}
-            .col-12
-              /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
-              small.text-secondary あらすじ:
-              .px-2
-                small.text-secondary =simple_format(scenario.summary.slice(0..48) + "...")
+            - if scenario.summary.present?
+              .col-12
+                /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
+                small.text-secondary あらすじ:
+                .px-2
+                  small.text-secondary =simple_format(scenario.summary&.slice(0..48) + "...")
             .col-12
               .border-top
                 small.text-secondary 評価:
-                small.text-secondary.float-right =scenario.reviews.average(:score)&.round(1)
+                small.text-secondary.float-right =scenario.reviews&.average(:score)&.round(1)
 
   .col-12.py-1
     .row
