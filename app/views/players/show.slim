@@ -1,24 +1,74 @@
 .container
   .row
+    .col-12
+      = link_to 'ログアウト', logout_path
     .col-12.bg-white.my-2.p-3.shadow-sm.rounded
-      .border-bottom
-        /- unless @player.image.nil?
-          = image_tag @player.image.thumb('70x70#').url
-        = link_to 'ログアウト', logout_path
-        h1.text-title.text-title = @player.name
-      /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
-      /.border-bottom
-        .my-2
-          span.text-secondary 作者:
-          - @player.writers.each do |writer|
-            span.text-secondary.float-right #{writer.name}
-      .my-2
-        span.text-secondary プレイ人数:
-        span.text-secondary.float-right #{@player.nickname}人
-      /.border-top
-        .my-2
-          span.text-secondary あらすじ:
-          .px-2
-            span.text-secondary.float-right #{@player.summary}
+      .row
+        .col-5
+          - unless @player.image.nil?
+            img src=@player&.image
+          br
+          span = @player.name
+        .col-7
+          span.float-left フォロワー
+          span.float-right フォロー
+    .col-12
+      ul.nav.nav-tabs.nav-fill
+        li.nav-item
+          a.nav-link.active href="#" プレイした
+        li.nav-item
+          a.nav-link href="#" 興味あり
+        li.nav-item
+          a.nav-link.disabled href="#" 制作物
+      .row.px-1
+        - @player.reviews&.each do |review|
+          .col-6
+            .px-1
+              .row.py-0.bg-white.mt-3.shadow-sm.rounded
+                a.col-12 href = scenario_path(review.scenario.id)
+                  .border-bottom
+                    .row
+                      .col-12.px-0
+                        /- unless scenario.image.nil?
+                          = image_tag scenario.image.thumb('70x70#').url
+                        /- else
+                        img.img-fluid.mr-1 alt="team" src=asset_path("bookshelf.png")
+                      .col-12
+                        .row
+                          .col-12
+                            .border-bottom
+                              span.text-body.font-weight-bold = review.scenario.title
+                          .col-12
+                            .border-bottom
+                              /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
+                              /small.text-secondary 自分のスコア:
+                              small.text-secondary #{review.score}
 
+                  .row
+                    - if logged_in?
+                      .col-4.px-1
+                        - if review.scenario.review_added?(current_player)
+                          = button_tag(class: "btn btn-warning p-1 btn-block") do
+                            span #{review.scenario.reviews.count}
+                            br
+                            small プレイした
+                        - else
+                          a href = scenario_path(review.scenario.id)
+                            = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                              span #{reviw.scenario.reviews.count}
+                              br
+                              small プレイした
+                      .col-4.px-1
+                        - if review.scenario.bookmark_added?(current_player)
+                          = button_tag(class: "btn btn-warning p-1 btn-block") do
+                            span #{review.scenario.bookmarks.count}
+                            br
+                            small 興味ある
+                        - else
+                          = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                            span #{review.scenario.bookmarks.count}
+                            br
+                            small 興味ある
+
+                      .col-4.px-1
 
