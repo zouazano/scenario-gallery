@@ -1,7 +1,21 @@
 .container
   .row.px-3
     .col-12
-      h1.mt-1.text-title シナリオ一覧
+      = render 'shared/search_form'
+
+    .col-12.mt-1
+      - if params[:q].present?
+        span 現在
+        p.lead.d-inline.text-success #{@q.result(distinct: true).count}件
+        span がヒットしています
+      - else
+        span 全
+        p.lead.d-inline.text-success #{@q.result(distinct: true).count}件
+
+    .col-12
+      = render 'shared/sort_form'
+
+
     .col-12
       - @scenarios.each do |scenario|
           = render 'scenarios/index-card', scenario: scenario

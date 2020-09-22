@@ -57,7 +57,7 @@
                               span.text-body.font-weight-bold = bookmark.scenario.title
                           .col-12
                             .border-bottom
-                              small.text-secondary =bookmark.scenario.reviews&.average(:score)&.round(1)
+                              small.text-secondary =bookmark.scenario.average_score
 
                   .row
                     - if logged_in?

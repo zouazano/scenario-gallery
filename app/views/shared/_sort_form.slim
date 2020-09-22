@@ -1,0 +1,11 @@
+      .row.pt-0.pb-1.bg-white.mt-1.shadow-sm.rounded
+        .col-12
+          = search_form_for(@q, url:scenarios_path) do |f|
+            span 並び替え
+            .float-right
+              .font-weight-bold.d-inline.border-right.px-2
+                = sort_link(@q, :created_at, "新着順")
+              .font-weight-bold.d-inline.border-right.px-2
+                = sort_link(@q, :play_time, "プレイ時間")
+              .font-weight-bold.d-inline.border-right.px-2
+                = sort_link(@q, :title, "名前順")

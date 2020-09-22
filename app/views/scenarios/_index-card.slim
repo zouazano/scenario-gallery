@@ -22,6 +22,12 @@
                 /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
                 small.text-secondary プレイ人数:
                 small.text-secondary.float-right #{scenario.player_number}人
+            - if scenario.play_time.present?
+              .col-12
+                .border-bottom
+                  /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
+                  small.text-secondary プレイ時間:
+                  small.text-secondary.float-right #{scenario.play_time}時間
             .col-12
               .border-bottom
                 /img.img-fluid.mr-1 alt="play" width="12" height="12" src=asset_path("play.png")
@@ -36,7 +42,7 @@
             .col-12
               .border-top
                 small.text-secondary 評価:
-                small.text-secondary.float-right =scenario.reviews&.average(:score)&.round(1)
+                small.text-secondary.float-right =scenario.average_score
 
   .col-12.py-1
     .row

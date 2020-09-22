@@ -38,6 +38,11 @@ class Scenario < ApplicationRecord
     review_players.include?(player)
   end
 
+  # レビューの平均スコアを返す
+  def average_score
+    reviews&.average(:score)&.round(1)
+  end
+
   private
 
     def review_params
