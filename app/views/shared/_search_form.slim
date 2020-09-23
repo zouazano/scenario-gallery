@@ -29,5 +29,5 @@
 
             .font-weight-bold.px-2.mt-3
               span キーワードで絞り込む
-              = f.search_field :title_or_writers_name_cont, class:'form-control form-control-sm', :placeholder => "タイトル、 作者名など"
+              = f.search_field :title_or_summary_or_writers_name_cont, class:'form-control form-control-sm', :placeholder => "タイトル、 作者名、あらすじなど"
             = f.submit :class=>"form-control text-white bg-success font-weight-bold mt-5", :value=>"絞り込む"
