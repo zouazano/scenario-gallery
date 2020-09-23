@@ -2,12 +2,12 @@ class Player < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  has_many :follow_relationships
+  has_many :follow_relationships, dependent: :destroy
   has_many :followings, through: :follow_relationships, source: :follow
-  has_many :reverse_of_follow_relationships, class_name: 'FollowRelationship', foreign_key: 'follow_id'
+  has_many :reverse_of_follow_relationships, class_name: 'FollowRelationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverse_of_follow_relationships, source: :player
 
-  has_many :review_relationships
+  has_many :review_relationships, dependent: :destroy
   has_many :fellow_reviews, through: :review_relationships, source: :review
 
   def follow(other_player)
