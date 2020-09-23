@@ -68,11 +68,10 @@
                             br
                             small プレイした
                         - else
-                          a href = scenario_path(bookmark.scenario.id)
-                            = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
-                              span #{bookmark.scenario.reviews.count}
-                              br
-                              small プレイした
+                          = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                            span #{bookmark.scenario.reviews.count}
+                            br
+                            small プレイした
                       .col-4.px-1
                         - if bookmark.scenario.bookmark_added?(current_player)
                           = button_tag(class: "btn btn-warning p-1 btn-block") do
