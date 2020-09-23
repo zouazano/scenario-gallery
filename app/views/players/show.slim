@@ -53,9 +53,10 @@
                             small 一緒にプレイした人
                             br
                             - review.fellow_players.each do |player|
-                              small ・
-                              small = player.name
-                              br
+                              a href=player_path(player)
+                                small ・
+                                small = player.name
+                                br
 
                   .row
                     - if logged_in?
