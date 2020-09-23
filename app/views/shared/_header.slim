@@ -1,33 +1,33 @@
-.container
+.container.fixed-top
   .row
     .col-12.bg-white.mb-1
       .row
-        a.col-6.pl-0 href = root_path
-          img.img-fluid.m-1 alt="user" width="40" height="40" src=asset_path("icon.png")
-          span.text-title マダミス
-        .col-6
+        a.col-9.pl-0 href = root_path
+          img.img-fluid.m-1 alt="user" width="40" height="40" src=asset_path("logo.png")
+          img.img-fluid.m-1 alt="user" width="180" height="40" src=asset_path("banner.png")
+        .col-3
           .div.float-right data-target="#headerModal" data-toggle="modal"
             img.img-fluid.mt-2 alt="menu" width="24" height="24" src=asset_path("menu.png")
 
-          #headerModal.modal.fade aria-hidden="true" aria-labelledby="headerModalLabel" role="dialog" tabindex="-1"
-            .modal-dialog role="document"
-              .modal-content
-                .modal-header
-                  h5#headerModalLabel.modal-title
-                    span.text-body.font-weight-bold メニュー
-                  button.close aria-label="Close" data-dismiss="modal" type="button"
-                    span aria-hidden="true"  ×
-                .modal-body
-                  a href = root_path
-                    span HOME
-                  br
-                  a href = root_path
-                    span シナリオを探す
-                  br
-                  - if logged_in?
-                    = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
-                  - else
-                    a href="/auth/twitter"  Twitterでログイン
-                .modal-footer
-                  button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
+#headerModal.modal.fade aria-hidden="true" aria-labelledby="headerModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5#headerModalLabel.modal-title
+          span.text-body.font-weight-bold メニュー
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  ×
+      .modal-body
+        a href = root_path
+          span HOME
+        br
+        a href = root_path
+          span シナリオを探す
+        br
+        - if logged_in?
+          = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
+        - else
+          a href="/auth/twitter"  Twitterでログイン
+      .modal-footer
+        button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
 
