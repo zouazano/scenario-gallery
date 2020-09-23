@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   resources :scenarios, only: %i[index show]
   resources :players, only: %i[index show] do
     get 'bookmarks'
+    get 'followers'
+    get 'followings'
   end
   resources :bookmarks, only: %i[create destroy]
   resources :reviews, only: %i[create edit destroy]
+  resources :follow_relationships, only: [:create, :destroy]
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

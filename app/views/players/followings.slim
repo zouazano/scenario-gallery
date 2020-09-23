@@ -1,0 +1,13 @@
+.container
+  .row.px-3
+    -@followings.each do |player|
+      a.col-12.py-2.bg-white.mt-3.shadow-sm.rounded href = player_path(player.id)
+        .row
+          .col-3
+            - unless player&.image.nil?
+              img src=player&.image
+          .col-9
+            span = player&.name
+
+    .col-12.mt-3.d-flex.justify-content-center
+      = paginate @followings

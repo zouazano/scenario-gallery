@@ -1,0 +1,21 @@
+    - if player == current_player
+      .col-12
+        = link_to 'ログアウト', logout_path
+    .col-12.bg-white.my-2.p-3.shadow-sm.rounded
+      .row
+        .col-5
+          - unless player.image.nil?
+            img src=player&.image
+          br
+          span = player.name
+        .col-7
+          .row
+            a.col-6.pr-0 href=player_followers_path(@player.id)
+              span.font-weight-bold = player.followers.count
+              span フォロワー
+            a.col-6 href=player_followings_path(@player.id)
+              span.font-weight-bold = player.followings.count
+              span フォロー
+            - unless player == current_player
+              .col-12
+                = render 'follow_relationships/follow_button', player: player

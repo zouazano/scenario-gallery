@@ -1,17 +1,6 @@
 .container
   .row
-    .col-12
-      = link_to 'ログアウト', logout_path
-    .col-12.bg-white.my-2.p-3.shadow-sm.rounded
-      .row
-        .col-5
-          - unless @player.image.nil?
-            img src=@player&.image
-          br
-          span = @player.name
-        .col-7
-          span.float-left フォロワー
-          span.float-right フォロー
+    = render 'players/player_header', player: @player
     .col-12
       ul.nav.nav-tabs.nav-fill
         li.nav-item
@@ -70,11 +59,10 @@
                             br
                             small プレイした
                         - else
-                          a href = scenario_path(review.scenario.id)
-                            = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
-                              span #{reviw.scenario.reviews.count}
-                              br
-                              small プレイした
+                          = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                            span #{review.scenario.reviews.count}
+                            br
+                            small プレイした
                       .col-4.px-1
                         - if review.scenario.bookmark_added?(current_player)
                           = button_tag(class: "btn btn-warning p-1 btn-block") do

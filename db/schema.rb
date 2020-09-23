@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200917091849) do
+ActiveRecord::Schema.define(version: 20200923113225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20200917091849) do
     t.index ["player_id", "scenario_id"], name: "index_bookmarks_on_player_id_and_scenario_id", unique: true
     t.index ["player_id"], name: "index_bookmarks_on_player_id"
     t.index ["scenario_id"], name: "index_bookmarks_on_scenario_id"
+  end
+
+  create_table "follow_relationships", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_follow_relationships_on_follow_id"
+    t.index ["player_id", "follow_id"], name: "index_follow_relationships_on_player_id_and_follow_id", unique: true
+    t.index ["player_id"], name: "index_follow_relationships_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -75,4 +85,6 @@ ActiveRecord::Schema.define(version: 20200917091849) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "follow_relationships", "players"
+  add_foreign_key "follow_relationships", "players", column: "follow_id"
 end

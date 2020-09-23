@@ -8,7 +8,7 @@
           = f.search_field :name_cont, class:'form-control form-control-sm', :placeholder => "プレイヤー名"
         = f.submit :class=>"form-control text-white bg-success font-weight-bold mt-5", :value=>"絞り込む"
     -@players.each do |player|
-      .col-12.py-2.bg-white.mt-3.shadow-sm.rounded
+      a.col-12.py-2.bg-white.mt-3.shadow-sm.rounded href = player_path(player.id)
         .row
           .col-3
             - unless player&.image.nil?

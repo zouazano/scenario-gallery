@@ -13,4 +13,14 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:player_id])
   end
 
+  def followers
+    @player = Player.find(params[:player_id])
+    @followers = @player.followers.page(params[:page]).per(30)
+  end
+
+  def followings
+    @player = Player.find(params[:player_id])
+    @followings = @player.followings.page(params[:page]).per(30)
+  end
+
 end
