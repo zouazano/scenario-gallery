@@ -46,7 +46,7 @@ class Scenario < ApplicationRecord
   private
 
     def review_params
-      params.require(:review).permit(:player_id, :scenario_id, :score, :content, :spoiler)
+      params.require(:review).permit(:player_id, :scenario_id, :score, :content, :spoiler, {:fellow_player_ids => []})
     end
 
 end

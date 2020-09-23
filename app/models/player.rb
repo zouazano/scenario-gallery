@@ -7,6 +7,9 @@ class Player < ApplicationRecord
   has_many :reverse_of_follow_relationships, class_name: 'FollowRelationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_follow_relationships, source: :player
 
+  has_many :review_relationships
+  has_many :fellow_reviews, through: :review_relationships, source: :review
+
   def follow(other_player)
     unless self == other_player
       self.follow_relationships.find_or_create_by(follow_id: other_player.id)
