@@ -18,19 +18,19 @@
         button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  ×
       .modal-body
-        a href = root_path
-          span HOME
-        br
-        a href = root_path
-          span シナリオを探す
-        br
-        a href = players_path
-          span プレイヤーを探す
-        br
-        - if logged_in?
-          = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
-        - else
-          a href="/auth/twitter"  Twitterでログイン
+        .container
+          .row
+            a.col-12.p-3.border-bottom href = root_path
+              span HOME
+            a.col-12.p-3.border-bottom href = root_path
+              span シナリオを探す
+            a.col-12.p-3.border-bottom href = players_path
+              span プレイヤーを探す
+            - if logged_in?
+              .col-12.p-3
+                = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
+            - else
+              a.col-12.p-3 href="/auth/twitter"  Twitterでログイン
       .modal-footer
         button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
 
