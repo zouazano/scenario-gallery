@@ -24,6 +24,9 @@
         a href = root_path
           span シナリオを探す
         br
+        a href = players_path
+          span プレイヤーを探す
+        br
         - if logged_in?
           = link_to 'マイページ', player_path(Player.find_by(uid: session[:uid]))
         - else
