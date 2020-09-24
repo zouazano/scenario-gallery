@@ -7,20 +7,12 @@
               span 人数
               br
               = f.select :player_number_eq, {"指定なし" => "", "2人" => "2", "3人" => "3", "4人" => "4", "5人" => "5", "6人" => "6", "7人" => "7", "8人" => "8", "9人" => "9", "10人" => "10", "11人" => "11"}, {}, {class: 'form-control form-control-sm text-small d-inline'}
-            - unless params[:q].nil?
-              .font-weight-bold.px-2.mt-3
-                span プレイ時間
-                br
-                = f.select :play_time_gteq, {"下限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {selected: params[:q][:play_time_gteq]}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
-                span.text-small 〜
-                = f.select :play_time_lteq, {"上限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {selected: params[:q][:play_time_lteq]}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
-            - else
-              .font-weight-bold.px-2.mt-3
-                span プレイ時間
-                br
-                = f.select :play_time_gteq, {"下限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
-                span.text-small 〜
-                = f.select :play_time_lteq, {"下限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
+            .font-weight-bold.px-2.mt-3
+              span プレイ時間
+              br
+              = f.select :play_time_gteq, {"下限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {selected: params.dig('q', 'play_time_gteq')}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
+              span.text-small 〜
+              = f.select :play_time_lteq, {"上限なし" => "", "30分" => "0.5", "1時間" => "1", "1.5時間" => "1.5", "2時間" => "2", "3時間" => "3", "4時間" => "4", "5時間" => "5"}, {selected: params.dig('q', 'play_time_lteq')}, {class: 'form-control form-control-sm col-5 text-small d-inline'}
 
             .font-weight-bold.px-2.mt-3
               span GM

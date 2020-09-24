@@ -2,7 +2,7 @@ class ScenariosController < ApplicationController
 
   def index
     @q = Scenario.ransack(params[:q])
-    @scenarios = @q.result(distinct: true).order(created_at: "DESC").page(params[:page]).per(10)
+    @scenarios = @q.result(distinct: true).order(price: "ASC").page(params[:page]).per(10)
   end
 
   def show
