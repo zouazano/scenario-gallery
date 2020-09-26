@@ -16,6 +16,6 @@
             a.col-6 href=player_followings_path(@player.id)
               span.font-weight-bold = player.followings.count
               span フォロー
-            - unless player == current_player
+            - unless current_player.nil? || player == current_player
               .col-12
                 = render 'follow_relationships/follow_button', player: player
