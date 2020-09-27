@@ -48,17 +48,18 @@
                             /img.img-fluid.mr-1 alt="team" width="12" height="12" src=asset_path("team.png")
                             /small.text-secondary 自分のスコア:
                             small.text-secondary #{review.score}
-                        .col-12.mb-1
-                          .border-bottom
-                            small 一緒にプレイした人
-                            br
-                            - review.fellow_players.each do |player|
-                              a href=player_path(player)
-                                small ・
-                                small = player.name
-                                br
 
+                .col-12
                   .row
+                    .col-12.mb-1
+                      .border-bottom
+                        small.text-secondary 一緒にプレイした人
+                        br
+                        - review.fellow_players.each do |player|
+                          a href=player_path(player)
+                            small.text-secondary ・
+                            small.text-secondary = player.name
+                            br
                     - if logged_in?
                       .col-4.px-1
                         - if review.scenario.review_added?(current_player)
