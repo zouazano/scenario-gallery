@@ -17,7 +17,42 @@
     .my-2
       span.text-secondary 作者:
       - scenario.writers.each do |writer|
-        span.text-secondary.float-right #{writer.name}
+        - unless writer.player_id.present?
+          span.text-secondary.float-right #{writer.name}
+        - else
+          a href=player_my_scenarios_path(writer.player_id)
+            span.text-primary.text-primary.float-right #{writer.name}
+      br
+      .div data-target="#writerapplicationModal" data-toggle="modal"
+        = button_tag(class: "btn btn-outline-primary p-1 btn-block") do
+          span 制作者申請をする
+      div id="writerapplicationModal" class="modal fade" aria-hidden="true" aria-labelledby="writerapplicationModal" role="dialog" tabindex="-1"
+        .modal-dialog role="document"
+          .modal-content
+            .modal-header
+              h5#reviewModalLabel.modal-title
+                span.text-body.font-weight-bold 制作者申請
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true"  ×
+            .modal-body
+              span ご自身の作品である場合、ライター登録をしていただきますと制作者として紐付けされるようになります。
+              br
+              span ライター登録をすると以下の機能をご利用いただけるようになります。
+              br
+              br
+              span ・シナリオの追加
+              br
+              span ・すでに登録されている作者とご自分の紐付け
+              br
+              br
+              span ライター登録はこちらのアカウントにDMをお願いいたします。
+              br
+              a href = 'https://twitter.com/GalleryScenario' target="_blank"
+                span.text-primary シナリオギャラリー公式Twitter
+                img.img-fluid.mb-1 alt="link" width="20" height="20" src=asset_path("link.png")
+            .modal-footer
+              button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
+
   .my-2
     span.text-secondary プレイ人数:
     span.text-secondary.float-right #{scenario.player_number}人

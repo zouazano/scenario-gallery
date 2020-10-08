@@ -1,0 +1,80 @@
+.container
+  .row
+    = render 'players/player_header', player: @player
+    .col-12
+      ul.nav.nav-tabs.nav-fill
+        li.nav-item
+          a.nav-link href=player_path(@player.id)
+            span.text-body プレイした
+        li.nav-item
+          a.nav-link href=player_bookmarks_path(@player.id)
+            span.text-body 興味あり
+        li.nav-item
+          a.nav-link.active href="#"
+            span.text-body 制作物
+
+      .row.px-1
+        - if @player.writer_id.present?
+          - Writer.find_by(id: @player.writer_id).scenarios.each do |scenario|
+            .col-6
+              .px-1
+                .row.py-0.bg-white.mt-3.shadow-sm.rounded
+                  a.col-12 href = scenario_path(scenario.id)
+                    .border-bottom
+                      .row
+                        .col-12.px-0
+                          /- unless scenario.image.nil?
+                            = image_tag scenario.image.thumb('70x70#').url
+                          /- else
+                          img.img-fluid.mr-1 alt="team" src=asset_path("bookshelf.png")
+                        .col-12
+                          .row
+                            .col-12
+                              .border-bottom
+                                span.text-body.font-weight-bold = scenario.title
+                            .col-12
+                              .border-bottom
+                                small.text-secondary = scenario.average_score
+
+                    .row
+                      - if logged_in?
+                        .col-4.px-1
+                          - if scenario.review_added?(current_player)
+                            = button_tag(class: "btn btn-warning p-1 btn-block") do
+                              span #{scenario.reviews.count}
+                              br
+                              small プレイした
+                          - else
+                            = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                              span #{scenario.reviews.count}
+                              br
+                              small プレイした
+                        .col-4.px-1
+                          - if scenario.bookmark_added?(current_player)
+                            = button_tag(class: "btn btn-warning p-1 btn-block") do
+                              span #{scenario.bookmarks.count}
+                              br
+                              small 興味ある
+                          - else
+                            = button_tag(class: "btn btn-outline-warning p-1 btn-block") do
+                              span #{scenario.bookmarks.count}
+                              br
+                              small 興味ある
+
+                        .col-4.px-1
+
+        - else
+          .col-12
+            span ライター登録をすると以下の機能をご利用いただけるようになります。
+            br
+            br
+            span ・シナリオの追加
+            br
+            span ・すでに登録されている作者とご自分の紐付け
+            br
+            br
+            span ライター登録はこちらのアカウントにDMをお願いいたします。
+            br
+            a href = 'https://twitter.com/GalleryScenario' target="_blank"
+              span.text-primary シナリオギャラリー公式Twitter
+              img.img-fluid.mb-1 alt="link" width="20" height="20" src=asset_path("link.png")

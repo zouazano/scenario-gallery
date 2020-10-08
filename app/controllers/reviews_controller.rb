@@ -22,8 +22,8 @@ class ReviewsController < ApplicationController
 
   private
 
-    def review_params
-      params.require(:review).permit(:player_id, :scenario_id, :score, :content, :spoiler, {:fellow_player_ids => []})
-    end
+  def review_params
+    params.require(:review).permit(:player_id, :scenario_id, :score, :content, :spoiler, {:fellow_player_ids => []})
+  end
 
 end

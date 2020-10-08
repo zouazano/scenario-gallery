@@ -1,0 +1,50 @@
+.container
+  .row.px-3
+    .col-12.bg-white.my-2.p-3.shadow-sm.rounded
+      = form_for(@writer.scenarios.build) do |f|
+        = f.hidden_field :writer_id, :value => @writer.id
+        .border-bottom.p-3
+          .row
+            .col-12
+              span.text-secondary シナリオタイトル
+            .col-12
+              = f.text_field :title, class:'form-control mb-2', :placeholder => ""
+        .border-bottom.p-3
+          .row
+            .col-6.pr-0
+              span.text-secondary 人数
+            .col-6
+              = f.number_field :player_number, min:0, step: "1", class:'form-control mb-2'
+        .border-bottom.p-3
+          .row
+            .col-6.pr-0
+              span.text-secondary プレイ時間
+            .col-6
+              = f.number_field :play_time, min:0, step: "0.1", class:'form-control mb-2', :placeholder => "単位:時間"
+        .border-bottom.p-3
+          .row
+            .col-9.pr-0
+              span.text-secondary GM( 必要な場合はチェックを入れてください )
+            .col-3
+              .float-right
+                = f.check_box :gm, class:'form-check form-check-input'
+        .border-bottom.p-3
+          .row
+            .col-12
+              span.text-secondary シナリオURL
+            .col-12
+              = f.text_field :scenario_link, class:'form-control mb-2', :placeholder => ""
+        .border-bottom.p-3
+          .row
+            .col-6.pr-0
+              span.text-secondary 価格
+            .col-6
+              = f.number_field :price, min:0, step: "1", class:'form-control mb-2'
+        .border-bottom.p-3
+          .row
+            .col-12
+              span.text-secondary あらすじ
+            .col-12
+              = f.text_area :summary, class:'form-control mb-2', :placeholder => ""
+
+        = f.submit '投稿する', class:'form-control bg-success font-weight-bold text-white border-info mb-2'

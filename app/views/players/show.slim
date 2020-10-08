@@ -10,22 +10,9 @@
           a.nav-link href=player_bookmarks_path(@player.id)
             span.text-body 興味あり
         li.nav-item
-          .nav-link
-            .div data-target="#notavailableModal" data-toggle="modal"
-              span 制作物
-            div id="notavailableModal" class="modal fade" aria-hidden="true" aria-labelledby="notavailableModal" role="dialog" tabindex="-1"
-              .modal-dialog role="document"
-                .modal-content
-                  .modal-header
-                    h5#reviewModalLabel.modal-title
-                      span.text-body.font-weight-bold
-                    button.close aria-label="Close" data-dismiss="modal" type="button"
-                      span aria-hidden="true"  ×
-                  .modal-body
-                    span 鋭意製作中です。
-                    br
-                  .modal-footer
-                    button.btn.btn-secondary data-dismiss="modal" type="button" 閉じる
+          a.nav-link href=player_my_scenarios_path(@player.id)
+            span.text-body 制作物
+
       .row.px-1
         - @player.reviews&.each do |review|
           .col-6

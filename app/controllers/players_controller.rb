@@ -13,6 +13,10 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:player_id])
   end
 
+  def my_scenarios
+    @player = Player.find(params[:player_id])
+  end
+
   def followers
     @player = Player.find(params[:player_id])
     @followers = @player.followers.page(params[:page]).per(30)
